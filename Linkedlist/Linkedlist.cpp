@@ -36,8 +36,7 @@ void LinkedList::insertToTail(int input){
 	newNode->val= input;
 	
 	if (head == NULL) {
-        LinkedList::insertToHead(input); /*i put this recursion function because if there is no tails or linked list is empty
-										  Then it's just like inserting a node to head*/
+        LinkedList::insertToHead(input); 
         delete newNode;
     }
     else{
