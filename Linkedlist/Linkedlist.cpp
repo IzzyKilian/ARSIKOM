@@ -1,66 +1,83 @@
 #include <iostream>
 #include "LinkedList.h"
-using namespace std;
 
-void linkedlist::InsertToHead(int input){
 
-    Node *newNode = new Node();
-    newNode->value = input;
-
-    newNode->next = head;
-    head = newNode;
-
-    if(tail==NULL)
-        tail = head;
+void LinkedList::insertToHead(int input){
+	Node *newNode = new Node();
+	newNode->val= input;
+	
+	newNode->next= head;
+	head = newNode;
+	
+	if(tail==NULL)
+	tail=head;
 }
 
-
-void linkedlist::PrintAll(){
-
-    Node *tmp = head;
-    while(tmp!=NULL){
-
-    cout << tmp->value << "->";
-    tmp = tmp ->next;
-
+void LinkedList::printAll(){
+	Node *tmp = head;
+	
+	if (tmp==NULL){
+		std::cout<<"Linked List is Empty!!\n";
+	}
+	
+	else{
+	while(tmp!=NULL){
+		std::cout<<tmp->val<<"->";
+		tmp = tmp->next;
+	}
+	std::cout<<"NULL\n";
+	}
+	
+	
 }
-    cout << endl;
-}
-void linkedlist::InsertToTail(int input){
-    Node* newNode = new Node();
-    newNode->value = input;
-    newNode->next = NULL;
 
-    if (tail == NULL) {
-        head = tail = newNode;
-        return;
+void LinkedList::insertToTail(int input){
+	Node *newNode = new Node();
+	newNode->val= input;
+	
+	if (head == NULL) {
+        LinkedList::insertToHead(input); /*i put this recursion function because if there is no tails or linked list is empty
+										  Then it's just like inserting a node to head*/
+        delete newNode;
+    }
+    else{
+	
+	Node *tmp= tail;
+	tail->next = newNode;
+	tail=newNode;
+	}
+}
+
+void LinkedList::insertAfter(int x, int b){
+	Node *newNode = new Node();
+    	newNode->val = b;
+
+    	Node *tmp = head;
+    	bool checker = false;
+    	if (head == NULL) {
+        std::cout << "Error!! List is empty. Cannot insert after." << std::endl;
+        delete newNode;
+        checker = true;
     }
 
-    tail->next = newNode;
-    tail = newNode;
-}
-
-void linkedlist::InsertAfter(int nodeValue, int input){
-    Node* newNode = new Node();
-    newNode->value = input;
-
-    if (head == NULL) {
-        head = newNode;
-        tail = newNode;
-        return;
-    }
-
-    Node* curr = head;
-    while (curr != NULL) {
-        if (curr->value == nodeValue) {
-            newNode->next = curr->next;
-            curr->next = newNode;
-            if (curr == tail) {
+    	while(tmp != NULL){
+            if(tmp->val == x){
+            	newNode->next = tmp->next;
+            	tmp->next = newNode;
+            if(tmp == tail){
                 tail = newNode;
             }
+            
+            checker = true;
             return;
         }
-        curr = curr->next;
+        tmp = tmp->next;
     }
-    cout << "Node with value " << nodeValue << " not found" << endl;
+    
+    	if(checker == false){
+    		std::cout << "Error: Value " << x << " not found in the list. Cannot insert after." << std::endl;
+        delete newNode;
+		}
+	
+	
 }

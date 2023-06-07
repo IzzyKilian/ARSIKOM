@@ -1,38 +1,29 @@
 class Node{
-
-public :
-    int value;
-    Node *next;
-
-    Node(){
-    next = NULL;
-    }
+	public:
+		int  val;
+		Node *next;
+		
+		Node(){
+			next =NULL;
+		}
 };
 
-class linkedlist {
-
-public:
-    Node *head;
-    Node *tail;
-
-    void InsertToHead(int);
-    void InsertToTail(int);
-    void InsertAfter(int,int);
-
-
-    void deleteFromHead();
-    void deleteFromTail();
-    void deleteByValue(int);
-
-    void PrintAll();
-
-    linkedlist(){
-
-    head = tail = NULL;
-
-    }
-
-
-
-
+class LinkedList{
+	public:
+		Node *head;
+		Node *tail;
+		
+		void insertToHead(int);
+		void insertToTail(int);
+		void insertAfter(int, int);
+		
+		void deleteFromHead(int);
+		void deleteFromTail(int);
+		void deleteByValue(int);
+		
+		void printAll();
+		
+		LinkedList(){
+			head=tail=NULL;
+		}
 };
